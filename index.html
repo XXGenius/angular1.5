@@ -23,10 +23,10 @@
                                         <div></div>
                                     </div>
                                     <form  novalidate >
-                                        <div><input  id="myinput" class="form-control inputmuform" ng-model="f.ID"  name="ID" required></div>
-                                        <div><input id="myinput1" class="form-control inputmuform" ng-model="f.Name"   name="Name" required></div>
-                                        <div><input id="myinput2" class="form-control inputmuform" ng-model="f.Description"  name="Description" required></div>
-                                        <div><input id="myinput3" class="form-control inputmuform" ng-model="f.Price" name="Price" required></div>
+                                        <div><input  class="form-control" ng-model="f.ID"  name="ID" required></div>
+                                        <div><input  class="form-control" ng-model="f.Name"   name="Name" required></div>
+                                        <div><input  class="form-control" ng-model="f.Description"  name="Description" required></div>
+                                        <div><input  class="form-control" ng-model="f.Price" name="Price" required></div>
                                    </form>
                                     <form id="tr"
                                           novalidate ng-repeat="product in products | filter:f | orderBy: field: reverse track by $index"  >
