@@ -3,7 +3,6 @@ var app = angular.module('app', []);
 app.controller('table', function ($scope) {
 
     $scope.reverse = false;
-
     $scope.field = 'ID';
     $scope.formVisible = false;
     $scope.name = '';
