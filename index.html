@@ -1,0 +1,85 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <title>My AngularJS TestApp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="font-awesome.css">
+  </head>
+  <body>
+  <div class="header">
+      <span>Test App</span>
+  </div>
+  <div class="container" ng-controller="table">
+  <h1>Product List</h1>
+                   <div class="table"  >
+                                    <div class="tr" >
+                                        <div>ID <button  ng-click="checkfield('ID')"  ><i class="fa fa-sort"></i></button></div>
+                                        <div>Name <button  ng-click="checkfield('Name')"  ><i class="fa fa-sort"></i></button></div>
+                                        <div>Description <button  ng-click="checkfield('Description')"  ><i class="fa fa-sort"></i></button></div>
+                                        <div>Price <button  ng-click="checkfield('Price')"  ><i class="fa fa-sort"></i></button></div>
+                                        <div></div>
+                                    </div>
+                                    <form  novalidate >
+                                        <div><input  id="myinput" class="form-control inputmuform" ng-model="f.ID"  name="ID" required></div>
+                                        <div><input id="myinput1" class="form-control inputmuform" ng-model="f.Name"   name="Name" required></div>
+                                        <div><input id="myinput2" class="form-control inputmuform" ng-model="f.Description"  name="Description" required></div>
+                                        <div><input id="myinput3" class="form-control inputmuform" ng-model="f.Price" name="Price" required></div>
+                                   </form>
+                                    <form id="tr"
+                                          novalidate ng-repeat="product in products | filter:f | orderBy: field: reverse track by $index"  >
+                                      <div>
+                                            <span>{{product.ID}}</span>
+                                        </div>
+                                        <div>
+                                           <span ng-show="product.edit === false">{{product.Name}}</span>
+                                           <div>
+                                                <input  ng-show="product.edit === true" type="text"  value="{{product.Name}}"  class="form-control"  ng-model="name"/>
+                                           </div>
+                                        </div>
+                                        <div>
+                                            <span ng-show="product.edit === false">{{product.Description}}</span>
+                                            <div >
+                                            <input ng-show="product.edit === true" type="text"  value="{{product.Description}}"   class="form-control"  ng-model="description"/>
+                                            </div>
+                                        </div>
+                                        <div>
+                                           <span ng-show="product.edit === false">{{product.Price}}</span>
+                                           <div>
+                                            <input ng-show="product.edit === true" type="text" value="{{product.Price}}" class="form-control" ng-model="price"/>
+                                           </div>
+                                        </div>
+                                        <div>
+                                            <a ng-show="product.edit === false"class="btn  btn-small btn-danger" ng-click="remove(product.ID)"><i class="fa fa-trash"></i> </a>
+                                            <a ng-show="product.edit === false" class="btn  btn-small btn-info" ng-click="edit(product.ID)"><i class="fa fa-pencil"></i></a>
+                                            <button ng-show="product.edit === true" class="btn btn-small btn-info" ng-click="update(product)" ><i class="fa fa-save"></i></button>
+                                            <button ng-show="product.edit === true" class="btn btn-small btn-danger" ng-click="cancel(product.ID)"><i class="fa fa-ban"></i></button>
+                                        </div>
+                                    </form>
+                   </div>
+                   <div ng-switch on="formVisible">
+                                     <button class="btn btn-small btn-success" ng-click="changeForm()"><i class="fa fa-plus"> New product</i></button>
+                                     <form  ng-switch-when="true" ng-submit="create()"  novalidate>
+                                     <h1>Add new Product</h1>
+                                       <div class="form-group">
+                                         <label for="exampleInputEmail1">Name</label>
+                                         <input type="text" class="form-control" id="exampleInputEmail1" name="name"  ng-model="name">
+                                       </div>
+                                       <div class="form-group">
+                                         <label for="exampleInputPassword1">Description</label>
+                                         <input type="text" class="form-control" id="exampleInputPassword1" name="description" ng-model="description">
+                                       </div>
+                                       <div class="form-group">
+                                       <label for="exampleCheck1">Price</label>
+                                         <input type="text" class="form-control" id="exampleCheck1" name="price" ng-model="price">
+                                       </div>
+                                        <input class="btn btn-small btn-info" type="submit" id="submit" value="Submit" />
+                                        <button  class="btn btn-small btn-warning" ng-click="cancelForm()">Cancel</button>
+                                     </form>
+                   </div>
+  </div>
+    <script src="main.js"></script>
+  </body>
+</html>
